@@ -1,0 +1,12 @@
+{
+    "UIButton" : "Button",
+    "UILabel" : "TextView",
+    "UITextField" : "EditText",
+    "UISwitch" : "Switch",
+    "UISlider" : "SeekBar",
+    "UIDatePicker" : "DatePicker",
+    "UIImageView" : "ImageView",
+    "UICalendarView" : "CalendarView",
+    "UISearchTextField": "SearchView",
+    "UIToolBar" : "Toolbar"
+}
