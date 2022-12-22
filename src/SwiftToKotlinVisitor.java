@@ -4,14 +4,35 @@ import org.w3c.dom.ls.LSOutput;
 
 import javax.json.JsonString;
 
+import javax.swing.*;
+import java.io.*;
+import java.util.ArrayList;
+import java.lang.String;
+import java.util.HashMap;
+import java.util.Scanner;
+
+import java.util.Map;
+
 public class SwiftToKotlinVisitor extends Swift3BaseVisitor<String> {
 
     @Override
     public String visitTop_level(Swift3Parser.Top_levelContext ctx) {
-       String kotlinCode = visitStatements(ctx.statements());
-       return kotlinCode;
-    }
+        String kotlinCode = "";
+        kotlinCode += visitStatements(ctx.statements());
+        String importString = "";
 
+        library_mapping obj = new library_mapping();
+
+        for (Map.Entry<String, String> entry : obj.myMap.entrySet()) {
+            if (ctx.getText().contains(entry.getKey()))
+            {
+                importString += "import " + entry.getValue() ;
+            }
+        }
+
+        return importString + kotlinCode;
+    }
+    
     @Override
     public String visitStatements(Swift3Parser.StatementsContext ctx) {
         String kotlinStatements = visitStatements_impl(ctx.statements_impl());
